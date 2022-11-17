@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const axios = require('axios');
 const BigNumber = require("bignumber.js");
+const cors = require("cors");
+
+app.use(cors({
+  origin:"*"
+}))
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

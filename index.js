@@ -27,10 +27,11 @@ app.get("/dolarhoy", async (req, res) => {
 
     let bidBlue, askBlue, bidOfi, askOfi;
     for (const data of rawData) {
-      const stringHTML = data.data.slice(52000);
-      if (stringHTML.indexOf("Blue") > 0) {
+      const stringHTML = data.data.slice(54000);
+      if (stringHTML.indexOf("blue") > 0) {
         [bidBlue, askBlue] = [...stringHTML.match(/(\d+\.\d{1,2})/g)];
-      } else {
+      }
+      if (stringHTML.indexOf("oficial") > 0) {
         [bidOfi, askOfi] = [...stringHTML.match(/(\d+\.\d{1,2})/g)];
       }
     }

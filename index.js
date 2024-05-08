@@ -27,7 +27,8 @@ app.get("/dolarhoy", async (req, res) => {
 
     let bidBlue, askBlue, bidOfi, askOfi;
     for (const data of rawData) {
-      const stringHTML = data.data.slice(54000);
+      const start = data.data.indexOf('data__valores')
+      const stringHTML = data.data.slice(start, start + 2000);
       if (stringHTML.indexOf("blue") > 0) {
         [bidBlue, askBlue] = [...stringHTML.match(/(\d+\.\d{1,2})/g)];
       }
@@ -48,6 +49,7 @@ app.get("/dolarhoy", async (req, res) => {
         bid: new BigNumber(bidBlue).toFixed(),
       },
     ];
+
 
     res.status(200).json(response);
   } catch (error) {
